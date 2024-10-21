@@ -1,0 +1,65 @@
+### Necessário para pegar o token    
+### Post  
+# @name loginAutenticado  
+POST http://localhost:40000/Login HTTP/1.1  
+content-type: application/json  
+  
+{      
+    "username": "qwe",  
+    "password": "qwe"  
+}  
+### Seta o token  
+@accessToken = {{loginAutenticado.response.body.$.token}}  
+@username = {{loginAutenticado.response.body.$.username}}  
+
+GET http://localhost:40000/GetAllEscolas HTTP/1.1  
+content-type: application/json  
+Authorization: Bearer {{accessToken}}  
+
+{      
+    
+}  
+
+### teste de buscar aluno por ID
+POST http://localhost:40000/GetEscolaByID HTTP/1.1  
+content-type: application/json  
+//Authorization:  {{accessToken}}  
+
+{     
+    "escolaid": 1
+}  
+
+### teste de inserção de aluno  
+POST http://localhost:40000/InsertEscolas HTTP/1.1  
+content-type: application/json  
+//Authorization: Bearer  
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTcyODMwNjQ3OSwiZXhwIjoxNzI4MzE2NDc5fQ.NNK-QkRqLsOrwSyBO4hY6ittMd_tu43lBZUxmmy4v2I  
+  
+{      
+    "escolaid": 2,  
+    "nome": "Escolha Hidráulica de Santa Rita",   
+    "dataAbertura": "1999-01-01", 
+    "deleted": false      
+}  
+
+### teste de atualização de aluno  
+POST http://localhost:40000/UpdateEscolas HTTP/1.1  
+content-type: application/json  
+//Authorization: Bearer  
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InF3ZSIsImlhdCI6MTcyODMwNjQ3OSwiZXhwIjoxNzI4MzE2NDc5fQ.NNK-QkRqLsOrwSyBO4hY6ittMd_tu43lBZUxmmy4v2I  
+
+{      
+    "escolaid": 2,   
+    "nome": "Escola Técnica de Hidrologia de Santa Rita",
+    "deleted": false   
+}  
+
+### teste de atualização de aluno  
+POST http://localhost:40000/DeleteEscolas HTTP/1.1  
+content-type: application/json  
+//Authorization: Bearer  
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzM0ODE2NDEsInVzZXJuYW1lIjoicXdlIn0.LRKs8uvt-SJ9E9dMGYRkCs7HhMDlqVmwap_zcaoONeQ  
+
+{      
+    "escolaid": 5     
+}  
